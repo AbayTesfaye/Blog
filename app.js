@@ -1,28 +1,31 @@
 const express = require('express');
 const app = express();
 
+// Set ejs as the view engine
+app.set('view engine', 'ejs');
+
 // Listen for requests
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
 
-// Serve the index.html file
+// Serve the index.ejs file
 app.get('/', (req, res) => {
-    res.sendFile('./views/index.html', { root: __dirname });
+    res.render('index');
 });
 
-// Serve the about.html file
+// Serve the about.ejs file
 app.get('/about', (req, res) => {
-    res.sendFile('./views/about.html', { root: __dirname });
+    res.render('about');
 });
 
 // Redirect to the about page
 app.get('/about-us', (req, res) => {
-    res.redirect('/about');
+    res.render('about'); // Assuming you want to render the 'about.ejs' file here
 });
 
 // Handle 404 errors
 app.use((req, res) => {
-    res.status(404).sendFile('./views/404.html', { root: __dirname });
+    res.status(404).render('404'); // Ensure the 404 file exists in your views folder
 });
 
