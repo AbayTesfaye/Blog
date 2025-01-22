@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 
 // Set ejs as the view engine
 app.set('view engine', 'ejs');
@@ -8,6 +9,13 @@ app.set('view engine', 'ejs');
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
+
+// Middleware
+app.use(morgan('dev'));
+
+// Serve static files
+app.use(express.static('public'));
+
 
 // Serve the index.ejs file
 app.get('/', (req, res) => {
