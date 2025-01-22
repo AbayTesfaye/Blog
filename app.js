@@ -20,8 +20,8 @@ app.get('/about', (req, res) => {
 });
 
 // Redirect to the about page
-app.get('/about-us', (req, res) => {
-    res.render('about'); // Assuming you want to render the 'about.ejs' file here
+app.get('/blogs/create', (req, res) => {
+    res.render('create'); // Assuming you want to render the 'about.ejs' file here
 });
 
 // Handle 404 errors
