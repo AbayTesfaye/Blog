@@ -56,18 +56,21 @@ app.get('/single-blog', (req, res) => {
 
 // Routes
 app.get('/', (req, res) => {
-    const blogs = [
-        { title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur' },
-        { title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur' },
-        { title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur' },
-    ];
-    res.render('index', { title: 'Home', blogs });
+    res.redirect('/blogs');
 });
 
 app.get('/about', (req, res) => {
     res.render('about', { title: 'About' });
 });
 
+// Blog routes
+app.get('/blogs', (req, res) => {
+    Blog.find()
+    .then((result) => {
+        res.render('index',{title: 'All Blogs', blogs:result})
+    })
+    .catch()
+})
 app.get('/blogs/create', (req, res) => {
     res.render('create', { title: 'Create' });
 });
