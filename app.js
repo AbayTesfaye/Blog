@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const Blog = require('./models/blog');
 require('dotenv').config(); // Load environment variables
 
 // Express app
@@ -22,6 +23,36 @@ app.use(morgan('dev'));
 
 // Serve static files
 app.use(express.static('public'));
+
+
+// add blogs
+
+app.get('/add-blog', (req, res) => {
+    const blog = new Blog({
+        title: 'New Blog 2',
+        snippet: 'About my new blog',
+        body: 'More about my new blog'
+    });
+
+    blog.save()
+        .then((result) => res.send(result))
+        .catch((err) => console.error(err));
+});
+
+// get all blogs
+app.get('/all-blogs', (req, res) => {
+    Blog.find()
+        .then((result) => res.send(result))
+        .catch((err) => console.error(err));
+});
+
+// get single blog
+app.get('/single-blog', (req, res) => {
+    Blog.findById('679146e8559e8f965da69d68')
+        .then((result) => res.send(result))
+        .catch((err) => console.error(err));
+});
+
 
 // Routes
 app.get('/', (req, res) => {
