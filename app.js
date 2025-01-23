@@ -71,6 +71,11 @@ app.get('/blogs', (req, res) => {
     })
     .catch()
 })
+
+app.post('/blogs',()=>{
+    
+})
+
 app.get('/blogs/create', (req, res) => {
     res.render('create', { title: 'Create' });
 });
