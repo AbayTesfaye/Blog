@@ -1,23 +1,28 @@
+<!DOCTYPE html>
 <html lang="en">
 <%- include('./partials/head.ejs') %>
 
 <body>
-    <%- include('./partials/nav.ejs') %>
+  <%- include('./partials/nav.ejs') %>
 
-  <div class="create-blog content">
+  <main class="create-blog content">
+    <h1>Create a New Blog</h1>
     <form action="/blogs" method="POST">
       <label for="title">Blog title:</label>
-      <input type="text" id="title" name="title" required>
-      <label for="snippet">Blog snippet:</label>
-      <input type="text" id="snippet" name="snippet" required>
-      <label for="body">Blog body:</label>
-      <textarea id="body" name="body" required></textarea>
-      <button>Submit</button>
-    </form>
-  </div>
+      <input type="text" id="title" name="title" placeholder="Enter your blog title" required />
 
-  <footer>
-    Copyright &copy; Blog Ninja 2020
+      <label for="snippet">Blog snippet:</label>
+      <input type="text" id="snippet" name="snippet" placeholder="Enter a short description" required />
+
+      <label for="body">Blog body:</label>
+      <textarea id="body" name="body" placeholder="Write your blog content here" required></textarea>
+
+      <button class="btn-submit">Submit</button>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <p>Copyright &copy; Blog Ninja 2020</p>
   </footer>
 </body>
 </html>

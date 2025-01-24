@@ -23,6 +23,8 @@ app.use(morgan('dev'));
 
 // Serve static files
 app.use(express.static('public'));
+// Parse form data
+app.use(express.urlencoded({ extended: true }));
 
 
 // add blogs
@@ -72,8 +74,17 @@ app.get('/blogs', (req, res) => {
     .catch()
 })
 
-app.post('/blogs',()=>{
-    
+app.post('/blogs',(req,res)=>{
+    // save data to database
+    // const blog = new Blog(req.body);
+    // blog.save()
+    // .then((result)=>{
+    //     res.redirect('/blogs');
+    // })
+    // .catch((err)=>{
+    //     console.log(err);
+    // })
+    console.log(req.body);
 })
 
 app.get('/blogs/create', (req, res) => {
