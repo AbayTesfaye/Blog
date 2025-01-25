@@ -75,16 +75,15 @@ app.get('/blogs', (req, res) => {
 })
 
 app.post('/blogs',(req,res)=>{
-    // save data to database
-    // const blog = new Blog(req.body);
-    // blog.save()
-    // .then((result)=>{
-    //     res.redirect('/blogs');
-    // })
-    // .catch((err)=>{
-    //     console.log(err);
-    // })
-    console.log(req.body);
+   // save data to database
+    const blog = new Blog(req.body);
+    blog.save()
+    .then((result)=>{
+        res.redirect('/blogs');
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
 })
 
 app.get('/blogs/create', (req, res) => {
