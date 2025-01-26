@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const Blog = require('./models/blog');
+const blogRoutes = require('./routes/blogRoutes');
 require('dotenv').config(); // Load environment variables
 
 // Express app
@@ -66,51 +67,7 @@ app.get('/about', (req, res) => {
 });
 
 // Blog routes
-app.get('/blogs', (req, res) => {
-    Blog.find()
-    .then((result) => {
-        res.render('index',{title: 'All Blogs', blogs:result})
-    })
-    .catch()
-})
-
-app.post('/blogs',(req,res)=>{
-   // save data to database
-    const blog = new Blog(req.body);
-    blog.save()
-    .then((result)=>{
-        res.redirect('/blogs');
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-})
-
-app.get('/blogs/:id',(req,res)=>{    
-    const id = req.params.id;
-    Blog.findById(id)
-    .then((result)=>{
-        res.render('details',{blog:result,title:'Blog Details'})
-    })
-    .catch((err)=>{
-        console.log(err);
-    }) 
-})
-
-app.delete('/blogs/:id',(req,res)=>{
-    const id = req.params.id;
-    Blog.findByIdAndDelete(id)
-    .then((result)=>{
-        res.json({redirect:'/blogs'})
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-})
-
-app.get('/blogs/create', (req, res) => {
-    res.render('create', { title: 'Create' });
-});
+app.use(blogRoutes);
 
 // Handle 404 errors
 app.use((req, res) => {
