@@ -27,6 +27,11 @@ router.post('/blogs', (req, res) => {
     });
 });
 
+// GET create new blog form
+router.get('/blogs/create', (req, res) => {
+    res.render('create', { title: 'Create' });
+});
+
 // GET blog details by id
 router.get('/blogs/:id', (req, res) => {
     const id = req.params.id;
@@ -51,9 +56,5 @@ router.delete('/blogs/:id', (req, res) => {
     });
 });
 
-// GET create new blog form
-router.get('/blogs/create', (req, res) => {
-    res.render('create', { title: 'Create' });
-});
 
 module.exports = router;
